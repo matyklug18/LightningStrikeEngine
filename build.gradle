@@ -94,4 +94,5 @@ dependencies {
     implementation "org.joml:joml:1.9.20"
     implementation "com.code-disaster.steamworks4j:steamworks4j:1.8.0"
     implementation "com.code-disaster.steamworks4j:steamworks4j-server:1.8.0"
+    implementation 'org.jetbrains:annotations:15.0'
 }

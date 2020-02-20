@@ -1,19 +1,11 @@
-import org.lwjgl.*;
+import io.Window;
+import io.WindowManager;
+import org.joml.Random;
+import org.joml.Vector3f;
+import org.joml.Vector4f;
 import org.lwjgl.glfw.*;
-import org.lwjgl.opengl.*;
-import org.lwjgl.system.*;
-
-import java.nio.*;
-
-import static org.lwjgl.glfw.Callbacks.*;
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.system.MemoryStack.*;
-import static org.lwjgl.system.MemoryUtil.*;
 
 public class Main {
-
-    private static long window;
 
     public static void main(String[] args) {
         init();
@@ -26,55 +18,12 @@ public class Main {
     }
 
     private static void end() {
-        glfwFreeCallbacks(window);
-        glfwDestroyWindow(window);
-
-        glfwTerminate();
-        glfwSetErrorCallback(null).free();
     }
 
     private static void init() {
-        GLFWErrorCallback.createPrint(System.err).set();
-
-        if (!glfwInit())
-            throw new IllegalStateException("Unable to initialize GLFW");
-
-        glfwDefaultWindowHints();
-        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-
-        window = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
-        if ( window == NULL )
-            throw new RuntimeException("Failed to create the GLFW window");
-
-        glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
-            if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
-                glfwSetWindowShouldClose(window, true);
-        });
-
-        try ( MemoryStack stack = stackPush() ) {
-            IntBuffer pWidth = stack.mallocInt(1);
-            IntBuffer pHeight = stack.mallocInt(1);
-
-            glfwGetWindowSize(window, pWidth, pHeight);
-
-            GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-
-            glfwSetWindowPos(
-                    window,
-                    (vidmode.width() - pWidth.get(0)) / 2,
-                    (vidmode.height() - pHeight.get(0)) / 2
-            );
-        }
-
-        glfwMakeContextCurrent(window);
-        glfwSwapInterval(1);
-
-        glfwShowWindow(window);
-
-        GL.createCapabilities();
-
-        glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+        Random rnd = new Random(System.currentTimeMillis());
+        for(int i = 0; i < 4; i++)
+            WindowManager.add(new Window(new Vector4f(rnd.nextFloat(), rnd.nextFloat(), rnd.nextFloat(), rnd.nextFloat())).init().update(Main::renderObjects), Main::renderObjects);
     }
 
     public static long fixedTime = 2;
@@ -84,7 +33,7 @@ public class Main {
         double lastLoopTime = GLFW.glfwGetTime();
         double lastFPSTime = 0.0;
 
-        while(!shouldClose()) {
+        while(!WindowManager.shouldClose()) {
             double now = GLFW.glfwGetTime();
             double updateLength = now - lastLoopTime;
 
@@ -102,26 +51,25 @@ public class Main {
     }
 
     private static void updateDelta(double delta) {
+
     }
 
     private static void startRenderUpdate() {
-        while(!shouldClose()) {
+        while(!WindowManager.shouldClose()) {
             render();
         }
     }
 
+    private static void renderObjects() {
+
+    }
+
     private static void render() {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-
-        glfwSwapBuffers(window); // swap the color buffers
-
-        // Poll for window events. The key callback above will only be
-        // invoked during this call.
-        glfwPollEvents();
+        WindowManager.update();
     }
 
     private static void startFixedUpdate() {
-        while(!shouldClose()) {
+        while(!WindowManager.shouldClose()) {
             double frameStart = GLFW.glfwGetTime();
             updateFixed();
             double timeElapsed = GLFW.glfwGetTime() - frameStart;
@@ -138,9 +86,5 @@ public class Main {
 
     private static void updateFixed() {
 
-    }
-
-    public static boolean shouldClose() {
-        return glfwWindowShouldClose(window);
     }
 }
