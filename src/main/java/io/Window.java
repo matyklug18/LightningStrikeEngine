@@ -78,7 +78,7 @@ public class Window {
 
     public Window update(Function draw) {
         glfwMakeContextCurrent(winID);
-
+        glClearColor(color.x, color.y, color.z, color.w);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         draw.run();
         glfwSwapBuffers(winID);

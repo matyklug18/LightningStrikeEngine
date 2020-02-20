@@ -1,6 +1,15 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
+    }
 }
+
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -13,6 +22,8 @@ repositories {
 }
 
 dependencies {
+    compile group: 'de.javagl', name: 'obj', version: '0.3.0'
+
     implementation platform("org.lwjgl:lwjgl-bom:3.2.4-SNAPSHOT")
 
     implementation "org.lwjgl:lwjgl"
@@ -95,4 +106,26 @@ dependencies {
     implementation "com.code-disaster.steamworks4j:steamworks4j:1.8.0"
     implementation "com.code-disaster.steamworks4j:steamworks4j-server:1.8.0"
     implementation 'org.jetbrains:annotations:15.0'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'Main'
+        )
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+    }
 }
