@@ -19,7 +19,7 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Window {
 
-    public static long winID;
+    public long winID;
 
     public Vector4f color;
 
@@ -28,7 +28,6 @@ public class Window {
     }
 
     public Window init() {
-
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
