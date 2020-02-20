@@ -28,25 +28,21 @@ public class Window {
     }
 
     public Window init() {
-        GLFWErrorCallback.createPrint(System.err).set();
-
-        if (!glfwInit())
-            throw new IllegalStateException("Unable to initialize GLFW");
 
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
         winID = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
-        if ( winID == NULL )
+        if (winID == NULL)
             throw new RuntimeException("Failed to create the GLFW window");
 
         glfwSetKeyCallback(winID, (window, key, scancode, action, mods) -> {
-            if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
+            if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE)
                 glfwSetWindowShouldClose(window, true);
         });
 
-        try ( MemoryStack stack = stackPush() ) {
+        try (MemoryStack stack = stackPush()) {
             IntBuffer pWidth = stack.mallocInt(1);
             IntBuffer pHeight = stack.mallocInt(1);
 
@@ -82,6 +78,8 @@ public class Window {
     }
 
     public Window update(Function draw) {
+        glfwMakeContextCurrent(winID);
+
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         draw.run();
         glfwSwapBuffers(winID);

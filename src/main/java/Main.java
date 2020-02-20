@@ -5,6 +5,8 @@ import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.glfw.*;
 
+import static org.lwjgl.glfw.GLFW.glfwInit;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -21,9 +23,15 @@ public class Main {
     }
 
     private static void init() {
+
+        GLFWErrorCallback.createPrint(System.err).set();
+
+        if (!glfwInit())
+            throw new IllegalStateException("Unable to initialize GLFW");
+
         Random rnd = new Random(System.currentTimeMillis());
-        for(int i = 0; i < 4; i++)
-            WindowManager.add(new Window(new Vector4f(rnd.nextFloat(), rnd.nextFloat(), rnd.nextFloat(), rnd.nextFloat())).init().update(Main::renderObjects), Main::renderObjects);
+        for(int i = 0; i < 2; i++)
+            WindowManager.add(new Window(new Vector4f(rnd.nextFloat(), rnd.nextFloat(), rnd.nextFloat(), rnd.nextFloat())).init(), Main::renderObjects);
     }
 
     public static long fixedTime = 2;
