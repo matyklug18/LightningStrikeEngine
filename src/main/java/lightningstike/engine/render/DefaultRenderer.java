@@ -1,10 +1,13 @@
 package lightningstike.engine.render;
 
+import de.javagl.obj.Obj;
 import lightningstike.engine.data.GLData;
 import lightningstike.engine.io.WindowManager;
 import lightningstike.engine.util.MatrixUtils;
+import lightningstike.engine.util.ObjectsManager;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
@@ -24,15 +27,15 @@ public class DefaultRenderer {
         glUniformMatrix4fv(glGetUniformLocation(PID, name), false, matrixB);
     }
 
-    private static void renderObjects(int vao, int ibo, int PID, int indsCount) {
+    private static void renderObjects(int vao, int ibo, int PID, int indsCount, Vector3f pos, Vector3f rot, Vector3f scale) {
         GL30.glBindVertexArray(vao);
         GL30.glEnableVertexAttribArray(0);
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ibo);
 
         GL20.glUseProgram(PID);
 
-        setUniform("transform", MatrixUtils.transformationMatrix(new Vector3f(0,0,-2.5f), new Vector3f(0,0,0), new Vector3f(1,1,1)), PID);
-        setUniform("project", MatrixUtils.projectionMatrix(70, (float) WindowManager.getWindows().get(0).w/(float)WindowManager.getWindows().get(0).h, 0.1f, 10), PID);
+        setUniform("transform", MatrixUtils.transformationMatrix(pos, rot, scale), PID);
+        setUniform("project", MatrixUtils.projectionMatrix(70, (float) WindowManager.getWindows().get(0).w/(float)WindowManager.getWindows().get(0).h, 0.1f, 100), PID);
         setUniform("view", MatrixUtils.viewMatrix(new Vector3f(0,0,0), new Vector3f(0,0,0)), PID);
 
         GL11.glDrawElements(GL11.GL_TRIANGLES, indsCount, GL11.GL_UNSIGNED_INT, 0);
@@ -45,6 +48,9 @@ public class DefaultRenderer {
     }
 
     public static void render() {
-        renderObjects(GLData.vao, GLData.ibo, GLData.PID, GLData.indsCount);
+        for(int i = 0; i < ObjectsManager.getAmount(); i ++) {
+            ObjectsManager.get(i).selectForRendering();
+            renderObjects(GLData.vao, GLData.ibo, GLData.PID, GLData.indsCount, GLData.obj.pos, GLData.obj.rot, GLData.obj.scale);
+        }
     }
 }
