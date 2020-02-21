@@ -3,7 +3,8 @@ import io.Window;
 import io.WindowManager;
 import org.joml.Random;
 import org.joml.Vector4f;
-import org.lwjgl.glfw.*;
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
@@ -102,7 +103,7 @@ public class Main {
                 "\n" +
                 "void main()\n" +
                 "{\n" +
-                "    gl_Position = vec4(aPos, 1.0);\n" +
+                "    gl_Position = vec4(aPos * 0.5, 1.0);\n" +
                 "}";
         String FF = "#version 330 core\n" +
                 "out vec4 outColor;\n" +
