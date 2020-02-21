@@ -1,4 +1,4 @@
-package util;
+package lightningstike.engine.util;
 
 import de.javagl.obj.Obj;
 import de.javagl.obj.ObjReader;

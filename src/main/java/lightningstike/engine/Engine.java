@@ -1,18 +1,19 @@
+package lightningstike.engine;
+
 import de.javagl.obj.Obj;
-import io.Window;
-import io.WindowManager;
-import org.joml.*;
+import lightningstike.engine.data.GLData;
+import lightningstike.engine.io.WindowManager;
+import lightningstike.engine.util.Function;
+import lightningstike.engine.util.FunctionDouble;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.system.MemoryUtil;
-import util.MatrixUtils;
-import util.OBJLoader;
+import lightningstike.engine.util.OBJLoader;
 
 import java.io.IOException;
-import java.lang.Math;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -20,13 +21,15 @@ import java.util.ArrayList;
 import static org.lwjgl.glfw.GLFW.glfwInit;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.glEnable;
-import static org.lwjgl.opengl.GL20.glGetUniformLocation;
-import static org.lwjgl.opengl.GL20.glUniformMatrix4fv;
 
-public class Main {
+public class Engine {
 
-    public static void main(String[] args) {
+    private static FunctionDouble deltaFunc;
+    private static Function fixedFunc;
+    public static void start(FunctionDouble deltaF, Function fixedF) {
         init();
+        deltaFunc = deltaF;
+        fixedFunc = fixedF;
         Thread delta = new Thread(() -> startDeltaUpdate(), "deltaUpdate");
         delta.start();
         Thread fixed = new Thread(() -> startFixedUpdate(), "fixedUpdate");
@@ -38,30 +41,18 @@ public class Main {
     private static void end() {
     }
 
-    private static int vao, pbo, ibo;
-    private static int indsCount;
-
-    private static int PID;
-
     private static void init() {
 
-        GLFWErrorCallback.createPrint(System.err).set();
+        initMesh("test.obj");
+        initShader();
+    }
 
-        if (!glfwInit())
-            throw new IllegalStateException("Unable to initialize GLFW");
-
-        Random rnd = new Random(System.currentTimeMillis());
-        for(int i = 0; i < 1; i++)
-            WindowManager.add(new Window(new Vector4f(rnd.nextFloat(), rnd.nextFloat(), rnd.nextFloat(), rnd.nextFloat())).init(), Main::renderObjects);
-
-        glEnable(GL_DEPTH_TEST);
-
+    private static void initMesh(String objName) {
         try {
+            Obj obj =  OBJLoader.load(objName);
 
-            Obj obj =  OBJLoader.load("test.obj");
-
-            vao = GL30.glGenVertexArrays();
-            GL30.glBindVertexArray(vao);
+            GLData.vao = GL30.glGenVertexArrays();
+            GL30.glBindVertexArray(GLData.vao);
 
             FloatBuffer positionBuffer = MemoryUtil.memAllocFloat(obj.getNumVertices() * 3);
             float[] positionData = new float[obj.getNumVertices()* 3];
@@ -72,8 +63,8 @@ public class Main {
             }
             positionBuffer.put(positionData).flip();
 
-            pbo = GL15.glGenBuffers();
-            GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, pbo);
+            GLData.pbo = GL15.glGenBuffers();
+            GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, GLData.pbo);
             GL15.glBufferData(GL15.GL_ARRAY_BUFFER, positionBuffer, GL15.GL_STATIC_DRAW);
             GL20.glVertexAttribPointer(0, 3, GL11.GL_FLOAT, false, 0, 0);
             GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
@@ -83,23 +74,25 @@ public class Main {
             for (int i = 0; i < obj.getNumFaces(); i++) {
                 for (int j = 0; j < obj.getFace(i).getNumVertices(); j++) {
                     inds.add(obj.getFace(i).getVertexIndex(j));
-                    indsCount++;
+                    GLData.indsCount++;
                 }
             }
 
-            IntBuffer indsBuffer = MemoryUtil.memAllocInt(indsCount);
+            IntBuffer indsBuffer = MemoryUtil.memAllocInt(GLData.indsCount);
             indsBuffer.put(inds.stream().mapToInt(i -> i).toArray());
             indsBuffer.flip();
 
-            ibo = GL15.glGenBuffers();
-            GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ibo);
+            GLData.ibo = GL15.glGenBuffers();
+            GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, GLData.ibo);
             GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indsBuffer, GL15.GL_STATIC_DRAW);
             GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    private static void initShader() {
         String VF = "#version 460 core\n" +
                 "in vec3 aPos;\n" +
                 "uniform mat4 view;\n" +
@@ -119,7 +112,7 @@ public class Main {
                 "} ";
 
 
-        PID = GL20.glCreateProgram();
+        GLData.PID = GL20.glCreateProgram();
 
         int VID = GL20.glCreateShader(GL20.GL_VERTEX_SHADER);
 
@@ -141,26 +134,20 @@ public class Main {
             return;
         }
 
-        GL20.glAttachShader(PID, VID);
-        GL20.glAttachShader(PID, FID);
+        GL20.glAttachShader(GLData.PID, VID);
+        GL20.glAttachShader(GLData.PID, FID);
 
-        GL20.glLinkProgram(PID);
-        if (GL20.glGetProgrami(PID, GL20.GL_LINK_STATUS) == GL11.GL_FALSE) {
-            System.err.println("Program Linking: " + GL20.glGetProgramInfoLog(PID));
+        GL20.glLinkProgram(GLData.PID);
+        if (GL20.glGetProgrami(GLData.PID, GL20.GL_LINK_STATUS) == GL11.GL_FALSE) {
+            System.err.println("Program Linking: " + GL20.glGetProgramInfoLog(GLData.PID));
             return;
         }
 
-        GL20.glValidateProgram(PID);
-        if (GL20.glGetProgrami(PID, GL20.GL_VALIDATE_STATUS) == GL11.GL_FALSE) {
-            System.err.println("Program Validation: " + GL20.glGetProgramInfoLog(PID));
+        GL20.glValidateProgram(GLData.PID);
+        if (GL20.glGetProgrami(GLData.PID, GL20.GL_VALIDATE_STATUS) == GL11.GL_FALSE) {
+            System.err.println("Program Validation: " + GL20.glGetProgramInfoLog(GLData.PID));
             return;
         }
-    }
-
-    private static void setUniform(String name, Matrix4f matrix) {
-        FloatBuffer matrixB = MemoryUtil.memAllocFloat(16);
-        matrix.get(matrixB);
-        glUniformMatrix4fv(glGetUniformLocation(PID, name), false, matrixB);
     }
 
     public static long fixedTime = 2;
@@ -188,33 +175,13 @@ public class Main {
     }
 
     private static void updateDelta(double delta) {
-
+        deltaFunc.run(delta);
     }
 
     private static void startRenderUpdate() {
         while(!WindowManager.shouldClose()) {
             render();
         }
-    }
-
-    private static void renderObjects() {
-        GL30.glBindVertexArray(vao);
-        GL30.glEnableVertexAttribArray(0);
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ibo);
-
-        GL20.glUseProgram(PID);
-
-        setUniform("transform", MatrixUtils.transformationMatrix(new Vector3f(0,0,-2.5f), new Vector3f(0,0,0), new Vector3f(1,1,1)));
-        setUniform("project", MatrixUtils.projectionMatrix(70, (float)WindowManager.getWindows().get(0).w/(float)WindowManager.getWindows().get(0).h, 0.1f, 10));
-        setUniform("view", MatrixUtils.viewMatrix(new Vector3f(0,0,0), new Vector3f(0,0,0)));
-
-        GL11.glDrawElements(GL11.GL_TRIANGLES, indsCount, GL11.GL_UNSIGNED_INT, 0);
-
-        GL20.glUseProgram(0);
-
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
-        GL30.glDisableVertexAttribArray(0);
-        GL30.glBindVertexArray(0);
     }
 
     private static void render() {
@@ -233,11 +200,10 @@ public class Main {
                     Thread.sleep(wait);
                 }
             } catch (InterruptedException ex) {}
-
         }
     }
 
     private static void updateFixed() {
-
+        fixedFunc.run();
     }
 }

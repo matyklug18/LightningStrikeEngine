@@ -111,7 +111,7 @@ dependencies {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'Main'
+                'Main-Class': 'lightningstike.game.Main'
         )
     }
 }

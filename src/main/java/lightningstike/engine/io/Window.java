@@ -1,13 +1,12 @@
-package io;
+package lightningstike.engine.io;
 
 import org.joml.Vector4f;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryStack;
-import util.Function;
+import lightningstike.engine.util.Function;
 
 import java.nio.IntBuffer;
 
@@ -37,6 +36,11 @@ public class Window {
 
         w = 300;
         h = 300;
+
+        GLFWErrorCallback.createPrint(System.err).set();
+
+        if (!glfwInit())
+            throw new IllegalStateException("Unable to initialize GLFW");
 
         winID = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
         if (winID == NULL)
@@ -80,6 +84,8 @@ public class Window {
 
         glClearColor(color.x, color.y, color.z, color.w);
 
+        glEnable(GL_DEPTH_TEST);
+
         return this;
     }
 
@@ -93,7 +99,6 @@ public class Window {
 
     public Window update(Function draw) {
         glfwMakeContextCurrent(winID);
-        glClearColor(color.x, color.y, color.z, color.w);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         draw.run();
         glfwSwapBuffers(winID);

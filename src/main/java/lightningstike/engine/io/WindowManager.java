@@ -1,6 +1,6 @@
-package io;
+package lightningstike.engine.io;
 
-import util.Function;
+import lightningstike.engine.util.Function;
 
 import java.util.ArrayList;
 
