@@ -1,17 +1,18 @@
 import de.javagl.obj.Obj;
 import io.Window;
 import io.WindowManager;
-import org.joml.Random;
-import org.joml.Vector4f;
+import org.joml.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.system.MemoryUtil;
+import util.MatrixUtils;
 import util.OBJLoader;
 
 import java.io.IOException;
+import java.lang.Math;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import static org.lwjgl.glfw.GLFW.glfwInit;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL20.glGetUniformLocation;
+import static org.lwjgl.opengl.GL20.glUniformMatrix4fv;
 
 public class Main {
 
@@ -99,12 +102,15 @@ public class Main {
 
         String VF = "#version 460 core\n" +
                 "in vec3 aPos;\n" +
+                "uniform mat4 view;\n" +
+                "uniform mat4 project;\n" +
+                "uniform mat4 transform;\n" +
                 "\n" +
                 "void main()\n" +
                 "{\n" +
-                "    gl_Position = vec4(aPos, 1.0);\n" +
+                "    gl_Position = project * view * transform * vec4(aPos, 1.0);\n" +
                 "}";
-        String FF = "#version 330 core\n" +
+        String FF = "#version 460 core\n" +
                 "out vec4 outColor;\n" +
                 "\n" +
                 "void main()\n" +
@@ -151,6 +157,12 @@ public class Main {
         }
     }
 
+    private static void setUniform(String name, Matrix4f matrix) {
+        FloatBuffer matrixB = MemoryUtil.memAllocFloat(16);
+        matrix.get(matrixB);
+        glUniformMatrix4fv(glGetUniformLocation(PID, name), false, matrixB);
+    }
+
     public static long fixedTime = 2;
 
     private static void startDeltaUpdate() {
@@ -191,6 +203,10 @@ public class Main {
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ibo);
 
         GL20.glUseProgram(PID);
+
+        setUniform("transform", MatrixUtils.transformationMatrix(new Vector3f(0,0,-2.5f), new Vector3f(0,0,0), new Vector3f(1,1,1)));
+        setUniform("project", MatrixUtils.projectionMatrix(70, (float)WindowManager.getWindows().get(0).w/(float)WindowManager.getWindows().get(0).h, 0.1f, 10));
+        setUniform("view", MatrixUtils.viewMatrix(new Vector3f(0,0,0), new Vector3f(0,0,0)));
 
         GL11.glDrawElements(GL11.GL_TRIANGLES, indsCount, GL11.GL_UNSIGNED_INT, 0);
 

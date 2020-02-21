@@ -28,4 +28,8 @@ public class WindowManager {
         }
         return flag;
     }
+
+    public static ArrayList<Window> getWindows() {
+        return windows;
+    }
 }

@@ -1,8 +1,10 @@
 package io;
 
 import org.joml.Vector4f;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryStack;
 import util.Function;
@@ -22,6 +24,7 @@ public class Window {
     public long winID;
 
     public Vector4f color;
+    public int w, h;
 
     public Window(Vector4f color) {
         this.color = color;
@@ -31,6 +34,9 @@ public class Window {
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+
+        w = 300;
+        h = 300;
 
         winID = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
         if (winID == NULL)
@@ -55,6 +61,15 @@ public class Window {
                     (vidmode.height() - pHeight.get(0)) / 2
             );
         }
+
+        GLFWWindowSizeCallback sizeCallback = new GLFWWindowSizeCallback() {
+            public void invoke(long window, int w0, int h0) {
+                glViewport(0, 0, w0, h0);
+                w = w0;
+                h = h0;
+            }
+        };
+        org.lwjgl.glfw.GLFW.glfwSetWindowSizeCallback(winID, sizeCallback);
 
         glfwMakeContextCurrent(winID);
         glfwSwapInterval(1);
