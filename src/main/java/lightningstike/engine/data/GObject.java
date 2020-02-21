@@ -1,123 +1,98 @@
 package lightningstike.engine.data;
 
+import de.javagl.obj.FloatTuple;
 import de.javagl.obj.Obj;
-import lightningstike.engine.util.ObjectsManager;
+import lightningstike.engine.util.OBJLoader;
 import org.joml.Vector3f;
-import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.system.MemoryUtil;
 
+import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 
+import static org.lwjgl.opengl.GL15.*;
+
 public class GObject {
+    public GObject(String objModelName, Vector3f pos, Vector3f rot, Vector3f scale, GMaterial material) {
+        try {
+            this.model = OBJLoader.load(objModelName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.pos = pos;
+        this.rot = rot;
+        this.scale = scale;
+        GMaterial mat = material;
+        this.mat = mat;
+        initMesh();
+    }
+
+    public int vao, pbo, ibo, tbo;
+    public int indsCount;
+
     public Vector3f pos, rot, scale;
     public GMaterial mat;
     public Obj model;
 
     public void selectForRendering() {
-        initMesh(this);
-        initShader(this.mat.albedo);
-        GLData.obj = this;
+        SelectedData.obj = this;
     }
 
-    private static void initMesh(GObject obj) {
-        GLData.vao = GL30.glGenVertexArrays();
-        GL30.glBindVertexArray(GLData.vao);
+    public void initMesh() {
+        vao = GL30.glGenVertexArrays();
+        GL30.glBindVertexArray(vao);
 
-        FloatBuffer positionBuffer = MemoryUtil.memAllocFloat(obj.model.getNumVertices() * 3);
-        float[] positionData = new float[obj.model.getNumVertices()* 3];
-        for (int i = 0; i < obj.model.getNumVertices(); i++) {
-            positionData[i * 3] = obj.model.getVertex(i).getX();
-            positionData[i * 3 + 1] = obj.model.getVertex(i).getY();
-            positionData[i * 3 + 2] = obj.model.getVertex(i).getZ();
+        FloatBuffer positionBuffer = MemoryUtil.memAllocFloat(this.model.getNumVertices() * 3);
+        float[] positionData = new float[this.model.getNumVertices()* 3];
+        for (int i = 0; i < this.model.getNumVertices(); i++) {
+            positionData[i * 3] = this.model.getVertex(i).getX();
+            positionData[i * 3 + 1] = this.model.getVertex(i).getY();
+            positionData[i * 3 + 2] = this.model.getVertex(i).getZ();
         }
         positionBuffer.put(positionData).flip();
 
-        GLData.pbo = GL15.glGenBuffers();
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, GLData.pbo);
-        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, positionBuffer, GL15.GL_STATIC_DRAW);
+        pbo = glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER, pbo);
+        GL15.glBufferData(GL_ARRAY_BUFFER, positionBuffer, GL15.GL_STATIC_DRAW);
         GL20.glVertexAttribPointer(0, 3, GL11.GL_FLOAT, false, 0, 0);
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         ArrayList<Integer> inds = new ArrayList<>();
 
-        for (int i = 0; i < obj.model.getNumFaces(); i++) {
-            for (int j = 0; j < obj.model.getFace(i).getNumVertices(); j++) {
-                inds.add(obj.model.getFace(i).getVertexIndex(j));
-                GLData.indsCount++;
+        for (int i = 0; i < this.model.getNumFaces(); i++) {
+            for (int j = 0; j < this.model.getFace(i).getNumVertices(); j++) {
+                inds.add(this.model.getFace(i).getVertexIndex(j));
+                indsCount++;
             }
         }
 
-        IntBuffer indsBuffer = MemoryUtil.memAllocInt(GLData.indsCount);
+        IntBuffer indsBuffer = MemoryUtil.memAllocInt(indsCount);
         indsBuffer.put(inds.stream().mapToInt(i -> i).toArray());
         indsBuffer.flip();
 
-        GLData.ibo = GL15.glGenBuffers();
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, GLData.ibo);
+        ibo = glGenBuffers();
+        glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ibo);
         GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indsBuffer, GL15.GL_STATIC_DRAW);
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
+        glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
+
+        float[] texcord = new float[this.model.getNumTexCoords()];
+
+        for (int i = 0; i < this.model.getNumTexCoords()*2; i+=2) {
+            texcord[i/2] = (this.model.getTexCoord(i/2).getX());
+            texcord[i/2] = (this.model.getTexCoord(i/2).getY());
+        }
+
+        tbo = glGenBuffers();
+        FloatBuffer textCoordsBuffer = MemoryUtil.memAllocFloat(this.model.getNumTexCoords()*4);
+        textCoordsBuffer.put(texcord).flip();
+        glBindBuffer(GL_ARRAY_BUFFER, tbo);
+        glBufferData(GL_ARRAY_BUFFER, textCoordsBuffer, GL_STATIC_DRAW);
+        glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
     }
 
-    private static void initShader(Vector4f color) {
-        String VF = "#version 460 core\n" +
-                "in vec3 aPos;\n" +
-                "uniform mat4 view;\n" +
-                "uniform mat4 project;\n" +
-                "uniform mat4 transform;\n" +
-                "\n" +
-                "void main()\n" +
-                "{\n" +
-                "    gl_Position = project * view * transform * vec4(aPos, 1.0);\n" +
-                "}";
-        String FF = "#version 460 core\n" +
-                "out vec4 outColor;\n" +
-                "\n" +
-                "void main()\n" +
-                "{\n" +
-                "    outColor = vec4("+color.x+","+color.y+","+color.z+","+color.w+");\n" +
-                "} ";
-
-
-        GLData.PID = GL20.glCreateProgram();
-
-        int VID = GL20.glCreateShader(GL20.GL_VERTEX_SHADER);
-
-        GL20.glShaderSource(VID, VF);
-        GL20.glCompileShader(VID);
-
-        if (GL20.glGetShaderi(VID, GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE) {
-            System.err.println("Vertex Shader: " + GL20.glGetShaderInfoLog(VID));
-            return;
-        }
-
-        int FID = GL20.glCreateShader(GL20.GL_FRAGMENT_SHADER);
-
-        GL20.glShaderSource(FID, FF);
-        GL20.glCompileShader(FID);
-
-        if (GL20.glGetShaderi(FID, GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE) {
-            System.err.println("Fragment Shader: " + GL20.glGetShaderInfoLog(FID));
-            return;
-        }
-
-        GL20.glAttachShader(GLData.PID, VID);
-        GL20.glAttachShader(GLData.PID, FID);
-
-        GL20.glLinkProgram(GLData.PID);
-        if (GL20.glGetProgrami(GLData.PID, GL20.GL_LINK_STATUS) == GL11.GL_FALSE) {
-            System.err.println("Program Linking: " + GL20.glGetProgramInfoLog(GLData.PID));
-            return;
-        }
-
-        GL20.glValidateProgram(GLData.PID);
-        if (GL20.glGetProgrami(GLData.PID, GL20.GL_VALIDATE_STATUS) == GL11.GL_FALSE) {
-            System.err.println("Program Validation: " + GL20.glGetProgramInfoLog(GLData.PID));
-            return;
-        }
-    }
 }
