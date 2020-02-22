@@ -30,17 +30,18 @@ public class Window {
     }
 
     public Window init() {
+
+        GLFWErrorCallback.createPrint(System.err).set();
+
+        if (!glfwInit())
+            throw new IllegalStateException("Unable to initialize GLFW");
+
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
         w = 300;
         h = 300;
-
-        GLFWErrorCallback.createPrint(System.err).set();
-
-        if (!glfwInit())
-            throw new IllegalStateException("Unable to initialize GLFW");
 
         winID = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
         if (winID == NULL)

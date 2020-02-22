@@ -16,6 +16,7 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 
 public class GObject {
     public GObject(String objModelName, Vector3f pos, Vector3f rot, Vector3f scale, GMaterial material) {
@@ -59,7 +60,7 @@ public class GObject {
         pbo = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, pbo);
         GL15.glBufferData(GL_ARRAY_BUFFER, positionBuffer, GL15.GL_STATIC_DRAW);
-        GL20.glVertexAttribPointer(0, 3, GL11.GL_FLOAT, false, 0, 0);
+        glVertexAttribPointer(0, 3, GL11.GL_FLOAT, false, 0, 0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         ArrayList<Integer> inds = new ArrayList<>();
@@ -93,6 +94,7 @@ public class GObject {
         glBindBuffer(GL_ARRAY_BUFFER, tbo);
         glBufferData(GL_ARRAY_BUFFER, textCoordsBuffer, GL_STATIC_DRAW);
         glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
+        glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
     }
 
 }
