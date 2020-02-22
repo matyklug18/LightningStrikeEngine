@@ -19,6 +19,16 @@ import static org.lwjgl.opengl.GL20.*;
 
 public class DefaultRenderer {
 
+    private static int tex;
+
+    static {
+        try {
+            tex = TextureLoader.loadTexture("test.png");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private static void setUniform(String name, Matrix4f matrix) {
         FloatBuffer matrixB = MemoryUtil.memAllocFloat(16);
         matrix.get(matrixB);
@@ -37,7 +47,7 @@ public class DefaultRenderer {
         glActiveTexture(GL_TEXTURE0);
         // Bind the texture
         try {
-            glBindTexture(GL_TEXTURE_2D, TextureLoader.loadTexture("test.png"));
+            glBindTexture(GL_TEXTURE_2D, tex);
         } catch (Exception e) {
             e.printStackTrace();
         }

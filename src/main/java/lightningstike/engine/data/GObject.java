@@ -77,24 +77,23 @@ public class GObject {
         indsBuffer.flip();
 
         ibo = glGenBuffers();
-        glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ibo);
-        GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indsBuffer, GL15.GL_STATIC_DRAW);
-        glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indsBuffer, GL_STATIC_DRAW);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-        float[] texcord = new float[this.model.getNumTexCoords()];
-
-        for (int i = 0; i < this.model.getNumTexCoords()*2; i+=2) {
-            texcord[i/2] = (this.model.getTexCoord(i/2).getX());
-            texcord[i/2] = (this.model.getTexCoord(i/2).getY());
+        FloatBuffer textCoordsBuffer = MemoryUtil.memAllocFloat(this.model.getNumTexCoords()*2);
+        for (int i = 0; i < this.model.getNumTexCoords(); i++) {
+            textCoordsBuffer.put(this.model.getTexCoord(i).getX());
+            textCoordsBuffer.put(this.model.getTexCoord(i).getY());
         }
+        textCoordsBuffer.flip();
 
         tbo = glGenBuffers();
-        FloatBuffer textCoordsBuffer = MemoryUtil.memAllocFloat(this.model.getNumTexCoords()*4);
-        textCoordsBuffer.put(texcord).flip();
+
         glBindBuffer(GL_ARRAY_BUFFER, tbo);
         glBufferData(GL_ARRAY_BUFFER, textCoordsBuffer, GL_STATIC_DRAW);
-        glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
-        glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
+        glVertexAttribPointer(1, 2, GL_FLOAT, false, 8, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 
 }
