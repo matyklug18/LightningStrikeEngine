@@ -12,7 +12,7 @@ import org.joml.Vector4f;
 public class Main {
     public static void main(String[] args) {
         WindowManager.add(new Window(new Vector4f(0,0,0,0)).init(), DefaultRenderer::render);
-        ObjectsManager.add("test.obj", new Vector3f(0,0,-5f), new Vector3f(0,0,0), new Vector3f(1,1,1), new GMaterial(new Vector4f(1,1,1,1)));
+        ObjectsManager.add("test.obj", new Vector3f(0,0,-5f), new Vector3f(180,0,0), new Vector3f(1,1,1), new GMaterial(new Vector4f(1,1,1,1)));
         Engine.start((delta) -> { }, () -> { });
     }
 }

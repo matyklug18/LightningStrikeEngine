@@ -1,6 +1,7 @@
 package lightningstike.engine.io;
 
 import org.joml.Vector4f;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
@@ -74,14 +75,14 @@ public class Window {
                 h = h0;
             }
         };
-        org.lwjgl.glfw.GLFW.glfwSetWindowSizeCallback(winID, sizeCallback);
-
         glfwMakeContextCurrent(winID);
         glfwSwapInterval(1);
 
         glfwShowWindow(winID);
 
         GL.createCapabilities();
+
+        org.lwjgl.glfw.GLFW.glfwSetWindowSizeCallback(winID, sizeCallback);
 
         glClearColor(color.x, color.y, color.z, color.w);
 

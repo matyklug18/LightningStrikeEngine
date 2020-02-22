@@ -2,6 +2,7 @@ package lightningstike.engine.data;
 
 import de.javagl.obj.FloatTuple;
 import de.javagl.obj.Obj;
+import de.javagl.obj.ObjData;
 import lightningstike.engine.util.OBJLoader;
 import org.joml.Vector3f;
 import org.lwjgl.opengl.GL11;
@@ -82,10 +83,13 @@ public class GObject {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
         FloatBuffer textCoordsBuffer = MemoryUtil.memAllocFloat(this.model.getNumTexCoords()*2);
-        for (int i = 0; i < this.model.getNumTexCoords(); i++) {
+        /*for (int i = 0; i < this.model.getNumTexCoords(); i++) {
             textCoordsBuffer.put(this.model.getTexCoord(i).getX());
             textCoordsBuffer.put(this.model.getTexCoord(i).getY());
-        }
+        }*/
+
+        textCoordsBuffer.put(ObjData.getTexCoordsArray(this.model, 2));
+
         textCoordsBuffer.flip();
 
         tbo = glGenBuffers();

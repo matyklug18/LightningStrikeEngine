@@ -35,8 +35,8 @@ public class GMaterial {
                 "\n" +
                 "void main()\n" +
                 "{\n" +
-                "   outColor=vec4(outTexCoord, 0, 1);\n" +
-//                "   outColor = texture(texture_sampler, outTexCoord);\n" +
+//                "   outColor = vec4(outTexCoord, 0, 1);\n" +
+                "   outColor = texture(texture_sampler, outTexCoord);\n" +
 //                "   outColor = vec4("+color.x+","+color.y+","+color.z+","+color.w+");\n" +
                 "} ";
 

@@ -23,7 +23,7 @@ public class DefaultRenderer {
 
     static {
         try {
-            tex = TextureLoader.loadTexture("test.png");
+            tex = TextureLoader.loadTexture("grape.jpg");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -10,6 +10,6 @@ import java.io.InputStream;
 public class OBJLoader {
     public static Obj load(String path) throws IOException {
         InputStream  objInputStream = OBJLoader.class.getResourceAsStream("/" + path);
-        return ObjUtils.triangulate(ObjReader.read(objInputStream));
+        return ObjUtils.convertToRenderable(ObjReader.read(objInputStream));
     }
 }

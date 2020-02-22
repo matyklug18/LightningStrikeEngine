@@ -30,7 +30,7 @@ public class TextureLoader {
             buffer.put(bytes);
             buffer.put((byte) 0);
             buffer.flip();
-            buf = stbi_load_from_memory(buffer, w, h, channels, 0);
+            buf = stbi_load_from_memory(buffer, w, h, channels, 4);
             memFree(buffer);
 
             if (buf == null) {
