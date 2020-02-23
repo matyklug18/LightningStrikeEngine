@@ -1,2 +1,2 @@
 # LightningStrikeEngine
-a lightningstike.game lightningstike.engine
+a game engine

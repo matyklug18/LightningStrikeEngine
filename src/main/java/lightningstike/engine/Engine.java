@@ -1,14 +1,50 @@
 package lightningstike.engine;
 
+import lightningstike.engine.data.*;
 import lightningstike.engine.io.WindowManager;
 import lightningstike.engine.util.Function;
 import lightningstike.engine.util.FunctionDouble;
+import org.joml.Vector4f;
 import org.lwjgl.glfw.*;
 
 public class Engine {
 
     private static FunctionDouble deltaFunc;
     private static Function fixedFunc;
+
+    public static void init() {
+        MaterialManager.add(new IMaterial() {
+            @Override
+            public IColor getColor() {
+                return new Color(new Vector4f(1,1,1,1));
+            }
+
+            @Override
+            public ITexture getTexture() {
+                return () -> "test.png";
+            }
+
+            @Override
+            public float getRoughness() {
+                return 0;
+            }
+
+            @Override
+            public float getEmission() {
+                return 0;
+            }
+
+            @Override
+            public float getMetallic() {
+                return 0;
+            }
+
+            @Override
+            public String getName() {
+                return "default";
+            }
+        });
+    }
 
     public static void start(FunctionDouble deltaF, Function fixedF) {
         deltaFunc = deltaF;

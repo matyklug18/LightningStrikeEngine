@@ -1,5 +1,6 @@
 package lightningstike.engine.io;
 
+import org.joml.Vector2i;
 import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -26,8 +27,10 @@ public class Window {
     public Vector4f color;
     public int w, h;
 
-    public Window(Vector4f color) {
+    public Window(Vector4f color, Vector2i wh) {
         this.color = color;
+        this.w = wh.x;
+        this.h = wh.y;
     }
 
     public Window init() {
@@ -40,9 +43,6 @@ public class Window {
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-
-        w = 300;
-        h = 300;
 
         winID = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
         if (winID == NULL)

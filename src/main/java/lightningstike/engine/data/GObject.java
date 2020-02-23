@@ -34,8 +34,9 @@ public class GObject {
         initMesh();
     }
 
-    public int vao, pbo, ibo, tbo;
+    public int vao, pbo, ibo, tbo, nbo;
     public int indsCount;
+
 
     public Vector3f pos, rot, scale;
     public GMaterial mat;
@@ -83,10 +84,6 @@ public class GObject {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
         FloatBuffer textCoordsBuffer = MemoryUtil.memAllocFloat(this.model.getNumTexCoords()*2);
-        /*for (int i = 0; i < this.model.getNumTexCoords(); i++) {
-            textCoordsBuffer.put(this.model.getTexCoord(i).getX());
-            textCoordsBuffer.put(this.model.getTexCoord(i).getY());
-        }*/
 
         textCoordsBuffer.put(ObjData.getTexCoordsArray(this.model, 2));
 
@@ -97,6 +94,13 @@ public class GObject {
         glBindBuffer(GL_ARRAY_BUFFER, tbo);
         glBufferData(GL_ARRAY_BUFFER, textCoordsBuffer, GL_STATIC_DRAW);
         glVertexAttribPointer(1, 2, GL_FLOAT, false, 8, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+        FloatBuffer normalBuffer = ObjData.getNormals(model);
+        nbo = glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER, nbo);
+        glBufferData(GL_ARRAY_BUFFER, normalBuffer, GL_STATIC_DRAW);
+        glVertexAttribPointer(2, 3, GL_FLOAT, false, 0, 0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 

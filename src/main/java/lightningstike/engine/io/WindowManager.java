@@ -1,5 +1,6 @@
 package lightningstike.engine.io;
 
+import lightningstike.engine.data.InputManager;
 import lightningstike.engine.util.Function;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class WindowManager {
 
     public static void add(Window win, Function render) {
         windows.add(win);
+        InputManager.init(win.winID);
         renderers.add(render);
     }
 
