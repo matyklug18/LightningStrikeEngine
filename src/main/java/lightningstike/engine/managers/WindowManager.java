@@ -1,6 +1,6 @@
-package lightningstike.engine.io;
+package lightningstike.engine.managers;
 
-import lightningstike.engine.data.InputManager;
+import lightningstike.engine.io.Window;
 import lightningstike.engine.util.Function;
 
 import java.util.ArrayList;

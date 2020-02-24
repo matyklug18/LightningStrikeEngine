@@ -1,9 +1,7 @@
 package lightningstike.engine.util;
 
-import lightningstike.engine.data.GMaterial;
-import lightningstike.engine.data.GObject;
-import lightningstike.engine.data.MaterialManager;
-import lightningstike.engine.data.WObject;
+import lightningstike.engine.data.*;
+import lightningstike.engine.managers.MaterialManager;
 import org.joml.Vector3f;
 
 import java.util.ArrayList;
@@ -28,7 +26,7 @@ public class ObjectsManager {
         return new WObject(objs.get(index));
     }
 
-    public static void selectForRendering(int id) {
-        objs.get(id).selectForRendering();
+    public static void selectForRendering(int id, ReturnFunction<ISelectable<GObject>> func) {
+        objs.get(id).selectForRendering(func.run());
     }
 }

@@ -1,7 +1,6 @@
-package lightningstike.engine.data;
+package lightningstike.engine.managers;
 
-import lightningstike.engine.io.Window;
-import lightningstike.engine.io.WindowManager;
+import lightningstike.engine.data.IKey;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallback;
 

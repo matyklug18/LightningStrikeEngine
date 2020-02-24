@@ -1,4 +1,7 @@
-package lightningstike.engine.data;
+package lightningstike.engine.managers;
+
+import lightningstike.engine.data.GMaterial;
+import lightningstike.engine.data.IMaterial;
 
 import java.util.ArrayList;
 

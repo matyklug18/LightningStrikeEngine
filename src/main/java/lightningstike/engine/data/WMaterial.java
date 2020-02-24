@@ -11,9 +11,6 @@ public class WMaterial {
     }
 
     public Vector4f getColor() {
-        if(mat.getColor() instanceof IVoidColor)
-            return ((IVoidColor)mat.getColor()).getColor();
-        else
-            return new Vector4f(0f,0f,0f,0f);
+        return ColorInstanceofManager.checkInstance(mat.getColor()).getColor();
     }
 }

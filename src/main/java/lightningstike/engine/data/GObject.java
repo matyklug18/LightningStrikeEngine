@@ -42,8 +42,8 @@ public class GObject {
     public GMaterial mat;
     public Obj model;
 
-    public void selectForRendering() {
-        SelectedData.obj = this;
+    public void selectForRendering(ISelectable<GObject> select) {
+        select.setSelectedObject(this);
     }
 
     public void initMesh() {

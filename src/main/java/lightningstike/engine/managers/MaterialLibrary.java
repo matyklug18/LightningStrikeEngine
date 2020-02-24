@@ -1,5 +1,9 @@
-package lightningstike.engine.data;
+package lightningstike.engine.managers;
 
+import lightningstike.engine.data.Color;
+import lightningstike.engine.data.IColor;
+import lightningstike.engine.data.IMaterial;
+import lightningstike.engine.data.ITexture;
 import org.joml.Vector4f;
 
 public class MaterialLibrary {
