@@ -5,6 +5,9 @@ import lightningstike.engine.util.Function;
 
 import java.util.ArrayList;
 
+import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
+import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
+
 public class WindowManager {
     private static ArrayList<Window> windows = new ArrayList<>();
     private static ArrayList<Function> renderers = new ArrayList<>();
@@ -33,5 +36,12 @@ public class WindowManager {
 
     public static ArrayList<Window> getWindows() {
         return windows;
+    }
+
+    public static void end() {
+        for(Window wnd:getWindows()) {
+            glfwFreeCallbacks(wnd.winID);
+            glfwDestroyWindow(wnd.winID);
+        }
     }
 }

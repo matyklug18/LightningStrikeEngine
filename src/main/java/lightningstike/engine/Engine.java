@@ -1,12 +1,16 @@
 package lightningstike.engine;
 
 import lightningstike.engine.data.*;
+import lightningstike.engine.io.Window;
 import lightningstike.engine.managers.MaterialManager;
 import lightningstike.engine.managers.WindowManager;
 import lightningstike.engine.util.Function;
 import lightningstike.engine.util.FunctionDouble;
 import org.joml.Vector4f;
 import org.lwjgl.glfw.*;
+
+import static org.lwjgl.glfw.GLFW.glfwSetErrorCallback;
+import static org.lwjgl.glfw.GLFW.glfwTerminate;
 
 public class Engine {
 
@@ -59,6 +63,10 @@ public class Engine {
     }
 
     private static void end() {
+        WindowManager.end();
+
+        glfwTerminate();
+        glfwSetErrorCallback(null).free();
     }
 
     public static long fixedTime = 2;

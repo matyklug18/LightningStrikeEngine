@@ -48,7 +48,7 @@ public class DefaultRenderer {
     private static void setUniform(String name, Vector3f vector) {
         glUniform3fv(glGetUniformLocation(obj.getSelectedObject().mat.PID, name), new float[] {vector.x, vector.y, vector.z});
     }
-
+    static int tex;
     private static void renderObject() {
         GObject obj0 = obj.getSelectedObject();
         GL30.glBindVertexArray(obj0.vao);
@@ -63,13 +63,12 @@ public class DefaultRenderer {
         glActiveTexture(GL_TEXTURE0);
         // Bind the texture
         try {
-            int tex = TextureLoader.loadTexture(obj0.mat.mat.getTexture().getPath());
+            if(tex == GL_ZERO)
+                tex = TextureLoader.loadTexture(obj0.mat.mat.getTexture().getPath());
             glBindTexture(GL_TEXTURE_2D, tex);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        cam.add(new Vector3f(0.001f, 0, 0));
 
         setUniform("transform", MatrixUtils.transformationMatrix(obj0.pos, obj0.rot, obj0.scale));
         setUniform("project", MatrixUtils.projectionMatrix(70, (float) WindowManager.getWindows().get(0).w/(float)WindowManager.getWindows().get(0).h, 0.1f, 100));
