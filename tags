@@ -1,7 +1,246 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	0.0.0	/3fdf28bc/
+!_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
+1Y4hjFTx0KReksQIdgYv5vRoORO	.idea/workspace.xml	/^  <component name="ProjectId" id="1Y4hjFTx0KReksQIdgYv5vRoORO" \/>$/;"	i
+259d1b9c-9580-4a4c-b451-f92e4fb6b49b	.idea/workspace.xml	/^      <changelist id="259d1b9c-9580-4a4c-b451-f92e4fb6b49b" name="Default Changelist" comment=""/;"	i
+259d1b9c-9580-4a4c-b451-f92e4fb6b49b	.idea/workspace.xml	/^    <list default="true" id="259d1b9c-9580-4a4c-b451-f92e4fb6b49b" name="Default Changelist" com/;"	i
+APP_BASE_NAME	gradlew.bat	/^set APP_BASE_NAME=%~n0$/;"	v
+APP_HOME	gradlew.bat	/^set APP_HOME=%DIRNAME%$/;"	v
+AUTHORS:	README.md	/^#### AUTHORS:$/;"	t
+Add	.idea/workspace.xml	/^    <ConfirmationsSetting value="2" id="Add" \/>$/;"	i
+AreaLight	src/main/java/lightningstrike/engine/data/AreaLight.java	/^public class AreaLight implements ILight{$/;"	c
+CLASSPATH	gradlew.bat	/^set CLASSPATH=%APP_HOME%\\gradle\\wrapper\\gradle-wrapper.jar$/;"	v
+CMD_LINE_ARGS	gradlew.bat	/^set CMD_LINE_ARGS=$/;"	v
+CMD_LINE_ARGS	gradlew.bat	/^set CMD_LINE_ARGS=%*$/;"	v
+Color	src/main/java/lightningstrike/engine/data/Color.java	/^    public Color(Vector4f col) {$/;"	m	class:Color
+Color	src/main/java/lightningstrike/engine/data/Color.java	/^public class Color implements IVoidColor {$/;"	c
+ColorInstanceofManager	src/main/java/lightningstrike/engine/data/ColorInstanceofManager.java	/^public class ColorInstanceofManager {$/;"	c
+DEFAULT_JVM_OPTS	gradlew.bat	/^set DEFAULT_JVM_OPTS="-Xmx64m"$/;"	v
+DIRNAME	gradlew.bat	/^if "%DIRNAME%" == "" set DIRNAME=.$/;"	v
+DIRNAME	gradlew.bat	/^set DIRNAME=%~dp0$/;"	v
+Default	.idea/workspace.xml	/^    <task active="true" id="Default" summary="Default task">$/;"	i
+DefaultRenderer	src/main/java/lightningstrike/engine/render/DefaultRenderer.java	/^public class DefaultRenderer {$/;"	c
+DirLight	src/main/java/lightningstrike/engine/data/DirLight.java	/^public class DirLight implements ILight {$/;"	c
+Engine	src/main/java/lightningstrike/engine/Engine.java	/^public class Engine {$/;"	c
+Function	src/main/java/lightningstrike/engine/util/Function.java	/^public interface Function {$/;"	i
+FunctionDouble	src/main/java/lightningstrike/engine/util/FunctionDouble.java	/^public interface FunctionDouble {$/;"	i
+GMaterial	src/main/java/lightningstrike/engine/data/GMaterial.java	/^    public GMaterial(IMaterial mat) {$/;"	m	class:GMaterial
+GMaterial	src/main/java/lightningstrike/engine/data/GMaterial.java	/^public class GMaterial {$/;"	c
+GObject	src/main/java/lightningstrike/engine/data/GObject.java	/^    public GObject(String objModelName, Vector3f pos, Vector3f rot, Vector3f scale, GMaterial ma/;"	m	class:GObject
+GObject	src/main/java/lightningstrike/engine/data/GObject.java	/^public class GObject {$/;"	c
+GRADLE	.idea/workspace.xml	/^    <system id="GRADLE">$/;"	i
+IColor	src/main/java/lightningstrike/engine/data/IColor.java	/^public interface IColor {$/;"	i
+IKey	src/main/java/lightningstrike/engine/data/IKey.java	/^public interface IKey {$/;"	i
+ILight	src/main/java/lightningstrike/engine/data/ILight.java	/^public interface ILight {$/;"	i
+IMaterial	src/main/java/lightningstrike/engine/data/IMaterial.java	/^public interface IMaterial {$/;"	i
+ISelectable	src/main/java/lightningstrike/engine/data/ISelectable.java	/^public interface ISelectable<S> {$/;"	i
+ISelectedRenderer	src/main/java/lightningstrike/engine/data/ISelectedRenderer.java	/^public interface ISelectedRenderer {$/;"	i
+ITexture	src/main/java/lightningstrike/engine/data/ITexture.java	/^public interface ITexture {$/;"	i
+IVoidColor	src/main/java/lightningstrike/engine/data/IVoidColor.java	/^public interface IVoidColor extends IColor{$/;"	i
+InputManager	src/main/java/lightningstrike/engine/managers/InputManager.java	/^public class InputManager {$/;"	c
+JAVA_EXE	gradlew.bat	/^set JAVA_EXE=%JAVA_HOME%\/bin\/java.exe$/;"	v
+JAVA_EXE	gradlew.bat	/^set JAVA_EXE=java.exe$/;"	v
+JAVA_HOME	gradlew.bat	/^set JAVA_HOME=%JAVA_HOME:"=%$/;"	v
+LOCAL-00001	.idea/workspace.xml	/^    <task id="LOCAL-00001" summary="Initial Commit">$/;"	i
+LOCAL-00002	.idea/workspace.xml	/^    <task id="LOCAL-00002" summary="Initial Commit">$/;"	i
+LOCAL-00003	.idea/workspace.xml	/^    <task id="LOCAL-00003" summary="Initial Commit">$/;"	i
+LOCAL-00004	.idea/workspace.xml	/^    <task id="LOCAL-00004" summary="Initial Code">$/;"	i
+LOCAL-00005	.idea/workspace.xml	/^    <task id="LOCAL-00005" summary="Added GLFW Window">$/;"	i
+LOCAL-00006	.idea/workspace.xml	/^    <task id="LOCAL-00006" summary="Added WindowManager(alpha)">$/;"	i
+LOCAL-00007	.idea/workspace.xml	/^    <task id="LOCAL-00007" summary="WindowManager Almost Done(Broken RN)">$/;"	i
+LOCAL-00008	.idea/workspace.xml	/^    <task id="LOCAL-00008" summary="WindowManager Fixed">$/;"	i
+LOCAL-00009	.idea/workspace.xml	/^    <task id="LOCAL-00009" summary="Tried To Render Stuff">$/;"	i
+LOCAL-00010	.idea/workspace.xml	/^    <task id="LOCAL-00010" summary="Done Rendering, And Removed .gradle">$/;"	i
+LOCAL-00011	.idea/workspace.xml	/^    <task id="LOCAL-00011" summary="Refactored The Engine, So It Can Be Actually Used.">$/;"	i
+LOCAL-00012	.idea/workspace.xml	/^    <task id="LOCAL-00012" summary="Added The Ability To Have More Objects">$/;"	i
+LOCAL-00013	.idea/workspace.xml	/^    <task id="LOCAL-00013" summary="Tried To Add Textures(Failed So Far)">$/;"	i
+LOCAL-00014	.idea/workspace.xml	/^    <task id="LOCAL-00014" summary="Textures Almost Done">$/;"	i
+LOCAL-00015	.idea/workspace.xml	/^    <task id="LOCAL-00015" summary="Textures Almost Done(They Arent)">$/;"	i
+LOCAL-00016	.idea/workspace.xml	/^    <task id="LOCAL-00016" summary="Textures. FINALLY!">$/;"	i
+LOCAL-00017	.idea/workspace.xml	/^    <task id="LOCAL-00017" summary="Added Phong, Plus Allowed Controlling Of The Camera">$/;"	i
+LOCAL-00018	.idea/workspace.xml	/^    <task id="LOCAL-00018" summary="Got Rid Of *.log">$/;"	i
+LOCAL-00019	.idea/workspace.xml	/^    <task id="LOCAL-00019" summary="Got Rid Of SelectedData, Replaced With ISelectable">$/;"	i
+LOCAL-00020	.idea/workspace.xml	/^    <task id="LOCAL-00020" summary="Fixed A Bug">$/;"	i
+LOCAL-00021	.idea/workspace.xml	/^    <task id="LOCAL-00021" summary="Added Light Templates">$/;"	i
+LightInstanceofManager	src/main/java/lightningstrike/engine/data/LightInstanceofManager.java	/^public class LightInstanceofManager {$/;"	c
+LightManager	src/main/java/lightningstrike/engine/managers/LightManager.java	/^public class LightManager {$/;"	c
+LightningStrikeEngine	README.md	/^# LightningStrikeEngine$/;"	c
+Main	src/main/java/lightningstrike/game/Main.java	/^public class Main {$/;"	c
+MaterialLibrary	src/main/java/lightningstrike/engine/managers/MaterialLibrary.java	/^public class MaterialLibrary {$/;"	c
+MaterialManager	src/main/java/lightningstrike/engine/managers/MaterialManager.java	/^public class MaterialManager {$/;"	c
+MatrixUtils	src/main/java/lightningstrike/engine/util/MatrixUtils.java	/^public class MatrixUtils {$/;"	c
+OBJLoader	src/main/java/lightningstrike/engine/util/OBJLoader.java	/^public class OBJLoader {$/;"	c
+ObjectsManager	src/main/java/lightningstrike/engine/util/ObjectsManager.java	/^public class ObjectsManager {$/;"	c
+PID	src/main/java/lightningstrike/engine/data/GMaterial.java	/^    public int PID;$/;"	f	class:GMaterial
+PointLight	src/main/java/lightningstrike/engine/data/PointLight.java	/^public class PointLight implements ILight {$/;"	c
+ReturnFunction	src/main/java/lightningstrike/engine/data/ReturnFunction.java	/^public interface ReturnFunction<R> {$/;"	i
+SpotLight	src/main/java/lightningstrike/engine/data/SpotLight.java	/^public class SpotLight implements ILight {$/;"	c
+StringLoader	src/main/java/lightningstrike/engine/util/StringLoader.java	/^public class StringLoader {$/;"	c
+TextureLoader	src/main/java/lightningstrike/engine/util/TextureLoader.java	/^public class TextureLoader {$/;"	c
+WMaterial	src/main/java/lightningstrike/engine/data/WMaterial.java	/^    public WMaterial(GMaterial mat) {$/;"	m	class:WMaterial
+WMaterial	src/main/java/lightningstrike/engine/data/WMaterial.java	/^public class WMaterial {$/;"	c
+WObject	src/main/java/lightningstrike/engine/data/WObject.java	/^    public WObject(GObject obj) {$/;"	m	class:WObject
+WObject	src/main/java/lightningstrike/engine/data/WObject.java	/^public class WObject {$/;"	c
+Window	src/main/java/lightningstrike/engine/io/Window.java	/^    public Window(Vector4f color, Vector2i wh) {$/;"	m	class:Window
+Window	src/main/java/lightningstrike/engine/io/Window.java	/^public class Window {$/;"	c
+WindowManager	src/main/java/lightningstrike/engine/managers/WindowManager.java	/^public class WindowManager {$/;"	c
+_SKIP	gradlew.bat	/^set _SKIP=2$/;"	v
+add	src/main/java/lightningstrike/engine/managers/InputManager.java	/^    public static void add(IKey key) {$/;"	m	class:InputManager
+add	src/main/java/lightningstrike/engine/managers/LightManager.java	/^    public static void add(ILight light) {$/;"	m	class:LightManager
+add	src/main/java/lightningstrike/engine/managers/MaterialManager.java	/^    public static void add(IMaterial mat) {$/;"	m	class:MaterialManager
+add	src/main/java/lightningstrike/engine/managers/WindowManager.java	/^    public static void add(Window win, Function render) {$/;"	m	class:WindowManager
+add	src/main/java/lightningstrike/engine/util/ObjectsManager.java	/^    public static void add(String model, Vector3f pos, Vector3f rot, Vector3f scale, String mate/;"	m	class:ObjectsManager
+call	src/main/java/lightningstrike/engine/data/IKey.java	/^    void call(int action, int mods);$/;"	m	interface:IKey
+cam	src/main/java/lightningstrike/engine/render/DefaultRenderer.java	/^    public static Vector3f cam = new Vector3f(0, 5, 10);$/;"	f	class:DefaultRenderer
+camRot	src/main/java/lightningstrike/engine/render/DefaultRenderer.java	/^    public static Vector3f camRot = new Vector3f(35, 0, 0);$/;"	f	class:DefaultRenderer
+checkInstance	src/main/java/lightningstrike/engine/data/ColorInstanceofManager.java	/^    public static IVoidColor checkInstance(IColor color) {$/;"	m	class:ColorInstanceofManager
+col	src/main/java/lightningstrike/engine/data/Color.java	/^    Vector4f col;$/;"	f	class:Color
+color	src/main/java/lightningstrike/engine/io/Window.java	/^    public Vector4f color;$/;"	f	class:Window
+deltaFunc	src/main/java/lightningstrike/engine/Engine.java	/^    private static FunctionDouble deltaFunc;$/;"	f	class:Engine	file:
+die	gradlew	/^die () {$/;"	f
+distributionBase	gradle/wrapper/gradle-wrapper.properties	/^distributionBase=GRADLE_USER_HOME$/;"	k
+distributionPath	gradle/wrapper/gradle-wrapper.properties	/^distributionPath=wrapper\/dists$/;"	k
+distributionUrl	gradle/wrapper/gradle-wrapper.properties	/^distributionUrl=https\\:\/\/services.gradle.org\/distributions\/gradle-5.2.1-all.zip$/;"	k
+end	gradlew.bat	/^:end$/;"	l
+end	src/main/java/lightningstrike/engine/Engine.java	/^    private static void end() {$/;"	m	class:Engine	file:
+end	src/main/java/lightningstrike/engine/io/Window.java	/^    public void end() {$/;"	m	class:Window
+end	src/main/java/lightningstrike/engine/managers/WindowManager.java	/^    public static void end() {$/;"	m	class:WindowManager
+execute	gradlew.bat	/^:execute$/;"	l
+fail	gradlew.bat	/^:fail$/;"	l
+findJavaFromJavaHome	gradlew.bat	/^:findJavaFromJavaHome$/;"	l
+fixedFunc	src/main/java/lightningstrike/engine/Engine.java	/^    private static Function fixedFunc;$/;"	f	class:Engine	file:
+fixedTime	src/main/java/lightningstrike/engine/Engine.java	/^    public static long fixedTime = 2;$/;"	f	class:Engine
+get	src/main/java/lightningstrike/engine/util/ObjectsManager.java	/^    public static WObject get(int index) {$/;"	m	class:ObjectsManager
+getAmount	src/main/java/lightningstrike/engine/util/ObjectsManager.java	/^    public static int getAmount() {$/;"	m	class:ObjectsManager
+getColor	src/main/java/lightningstrike/engine/data/Color.java	/^    public Vector4f getColor() {$/;"	m	class:Color
+getColor	src/main/java/lightningstrike/engine/data/IMaterial.java	/^    IColor getColor();$/;"	m	interface:IMaterial
+getColor	src/main/java/lightningstrike/engine/data/IVoidColor.java	/^    Vector4f getColor();$/;"	m	interface:IVoidColor
+getColor	src/main/java/lightningstrike/engine/data/WMaterial.java	/^    public Vector4f getColor() {$/;"	m	class:WMaterial
+getEmission	src/main/java/lightningstrike/engine/data/IMaterial.java	/^    float getEmission();$/;"	m	interface:IMaterial
+getKey	src/main/java/lightningstrike/engine/data/IKey.java	/^    int getKey();$/;"	m	interface:IKey
+getMat	src/main/java/lightningstrike/engine/data/WObject.java	/^    public WMaterial getMat() {$/;"	m	class:WObject
+getMaterial	src/main/java/lightningstrike/engine/managers/MaterialManager.java	/^    public static GMaterial getMaterial(String id) {$/;"	m	class:MaterialManager
+getMetallic	src/main/java/lightningstrike/engine/data/IMaterial.java	/^    float getMetallic();$/;"	m	interface:IMaterial
+getName	src/main/java/lightningstrike/engine/data/IMaterial.java	/^    String getName();$/;"	m	interface:IMaterial
+getPath	src/main/java/lightningstrike/engine/data/ITexture.java	/^    String getPath();$/;"	m	interface:ITexture
+getPos	src/main/java/lightningstrike/engine/data/WObject.java	/^    public Vector3f getPos() {$/;"	m	class:WObject
+getRot	src/main/java/lightningstrike/engine/data/WObject.java	/^    public Vector3f getRot() {$/;"	m	class:WObject
+getScale	src/main/java/lightningstrike/engine/data/WObject.java	/^    public Vector3f getScale() {$/;"	m	class:WObject
+getSelectedObject	src/main/java/lightningstrike/engine/data/ISelectable.java	/^    S getSelectedObject();$/;"	m	interface:ISelectable
+getSpecularHighlight	src/main/java/lightningstrike/engine/data/IMaterial.java	/^    float getSpecularHighlight();$/;"	m	interface:IMaterial
+getSpecularStrength	src/main/java/lightningstrike/engine/data/IMaterial.java	/^    float getSpecularStrength();$/;"	m	interface:IMaterial
+getTexture	src/main/java/lightningstrike/engine/data/IMaterial.java	/^    ITexture getTexture();$/;"	m	interface:IMaterial
+getWindows	src/main/java/lightningstrike/engine/managers/WindowManager.java	/^    public static ArrayList<Window> getWindows() {$/;"	m	class:WindowManager
+gradle.version	.gradle/buildOutputCleanup/cache.properties	/^gradle.version=5.2.1$/;"	k
+grape	src/main/java/lightningstrike/engine/managers/MaterialLibrary.java	/^    public static IMaterial grape = new IMaterial() {$/;"	f	class:MaterialLibrary
+h	src/main/java/lightningstrike/engine/io/Window.java	/^    public int w, h;$/;"	f	class:Window
+ibo	src/main/java/lightningstrike/engine/data/GObject.java	/^    public int vao, pbo, ibo, tbo, nbo;$/;"	f	class:GObject
+indsCount	src/main/java/lightningstrike/engine/data/GObject.java	/^    public int indsCount;$/;"	f	class:GObject
+init	gradlew.bat	/^:init$/;"	l
+init	src/main/java/lightningstrike/engine/Engine.java	/^    public static void init() {$/;"	m	class:Engine
+init	src/main/java/lightningstrike/engine/io/Window.java	/^    public Window init() {$/;"	m	class:Window
+init	src/main/java/lightningstrike/engine/managers/InputManager.java	/^    public static void init(long id) {$/;"	m	class:InputManager
+initMesh	src/main/java/lightningstrike/engine/data/GObject.java	/^    public void initMesh() {$/;"	m	class:GObject
+initObject	src/main/java/lightningstrike/engine/util/ObjectsManager.java	/^    private static GObject initObject(String objModelName, Vector3f pos, Vector3f rot, Vector3f /;"	m	class:ObjectsManager	file:
+initShader	src/main/java/lightningstrike/engine/data/GMaterial.java	/^    private void initShader(Vector4f color) {$/;"	m	class:GMaterial	file:
+keys	src/main/java/lightningstrike/engine/managers/InputManager.java	/^    private static ArrayList<IKey> keys = new ArrayList<>();$/;"	f	class:InputManager	file:
+lightningstrike.engine	src/main/java/lightningstrike/engine/Engine.java	/^package lightningstrike.engine;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/AreaLight.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/Color.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/ColorInstanceofManager.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/DirLight.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/GMaterial.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/GObject.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/IColor.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/IKey.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/ILight.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/IMaterial.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/ISelectable.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/ISelectedRenderer.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/ITexture.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/IVoidColor.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/LightInstanceofManager.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/PointLight.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/ReturnFunction.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/SpotLight.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/WMaterial.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.data	src/main/java/lightningstrike/engine/data/WObject.java	/^package lightningstrike.engine.data;$/;"	p
+lightningstrike.engine.io	src/main/java/lightningstrike/engine/io/Window.java	/^package lightningstrike.engine.io;$/;"	p
+lightningstrike.engine.managers	src/main/java/lightningstrike/engine/managers/InputManager.java	/^package lightningstrike.engine.managers;$/;"	p
+lightningstrike.engine.managers	src/main/java/lightningstrike/engine/managers/LightManager.java	/^package lightningstrike.engine.managers;$/;"	p
+lightningstrike.engine.managers	src/main/java/lightningstrike/engine/managers/MaterialLibrary.java	/^package lightningstrike.engine.managers;$/;"	p
+lightningstrike.engine.managers	src/main/java/lightningstrike/engine/managers/MaterialManager.java	/^package lightningstrike.engine.managers;$/;"	p
+lightningstrike.engine.managers	src/main/java/lightningstrike/engine/managers/WindowManager.java	/^package lightningstrike.engine.managers;$/;"	p
+lightningstrike.engine.render	src/main/java/lightningstrike/engine/render/DefaultRenderer.java	/^package lightningstrike.engine.render;$/;"	p
+lightningstrike.engine.util	src/main/java/lightningstrike/engine/util/Function.java	/^package lightningstrike.engine.util;$/;"	p
+lightningstrike.engine.util	src/main/java/lightningstrike/engine/util/FunctionDouble.java	/^package lightningstrike.engine.util;$/;"	p
+lightningstrike.engine.util	src/main/java/lightningstrike/engine/util/MatrixUtils.java	/^package lightningstrike.engine.util;$/;"	p
+lightningstrike.engine.util	src/main/java/lightningstrike/engine/util/OBJLoader.java	/^package lightningstrike.engine.util;$/;"	p
+lightningstrike.engine.util	src/main/java/lightningstrike/engine/util/ObjectsManager.java	/^package lightningstrike.engine.util;$/;"	p
+lightningstrike.engine.util	src/main/java/lightningstrike/engine/util/StringLoader.java	/^package lightningstrike.engine.util;$/;"	p
+lightningstrike.engine.util	src/main/java/lightningstrike/engine/util/TextureLoader.java	/^package lightningstrike.engine.util;$/;"	p
+lightningstrike.game	src/main/java/lightningstrike/game/Main.java	/^package lightningstrike.game;$/;"	p
+lights	src/main/java/lightningstrike/engine/managers/LightManager.java	/^    private static ArrayList<ILight> lights;$/;"	f	class:LightManager	file:
+load	src/main/java/lightningstrike/engine/util/OBJLoader.java	/^    public static Obj load(String path) throws IOException {$/;"	m	class:OBJLoader
+loadResourceAsStream	src/main/java/lightningstrike/engine/util/StringLoader.java	/^    public static InputStream loadResourceAsStream(String path) {$/;"	m	class:StringLoader
+loadResourceAsString	src/main/java/lightningstrike/engine/util/StringLoader.java	/^    public static String loadResourceAsString(String path) {$/;"	m	class:StringLoader
+loadTexture	src/main/java/lightningstrike/engine/util/TextureLoader.java	/^    public static int loadTexture(String fileName) throws Exception {$/;"	m	class:TextureLoader
+main	src/main/java/lightningstrike/game/Main.java	/^    public static void main(String[] args) {$/;"	m	class:Main
+mainEnd	gradlew.bat	/^:mainEnd$/;"	l
+mat	src/main/java/lightningstrike/engine/data/GMaterial.java	/^    public IMaterial mat;$/;"	f	class:GMaterial
+mat	src/main/java/lightningstrike/engine/data/GObject.java	/^    public GMaterial mat;$/;"	f	class:GObject
+mat	src/main/java/lightningstrike/engine/data/WMaterial.java	/^    IMaterial mat;$/;"	f	class:WMaterial
+mats	src/main/java/lightningstrike/engine/managers/MaterialManager.java	/^    private static ArrayList<GMaterial> mats = new ArrayList<>();$/;"	f	class:MaterialManager	file:
+model	src/main/java/lightningstrike/engine/data/GObject.java	/^    public Obj model;$/;"	f	class:GObject
+nbo	src/main/java/lightningstrike/engine/data/GObject.java	/^    public int vao, pbo, ibo, tbo, nbo;$/;"	f	class:GObject
+obj	src/main/java/lightningstrike/engine/data/WObject.java	/^    private GObject obj;$/;"	f	class:WObject	file:
+obj	src/main/java/lightningstrike/engine/render/DefaultRenderer.java	/^    private static ISelectable<GObject> obj = new ISelectable<GObject>() {$/;"	f	class:DefaultRenderer	file:
+objs	src/main/java/lightningstrike/engine/util/ObjectsManager.java	/^    private static ArrayList<GObject> objs = new ArrayList<>();$/;"	f	class:ObjectsManager	file:
+omega	gradlew.bat	/^:omega$/;"	l
+pbo	src/main/java/lightningstrike/engine/data/GObject.java	/^    public int vao, pbo, ibo, tbo, nbo;$/;"	f	class:GObject
+pos	src/main/java/lightningstrike/engine/data/GObject.java	/^    public Vector3f pos, rot, scale;$/;"	f	class:GObject
+projectionMatrix	src/main/java/lightningstrike/engine/util/MatrixUtils.java	/^    public static Matrix4f projectionMatrix(float fov, float aspectRatio, float zNear, float zFa/;"	m	class:MatrixUtils
+render	src/main/java/lightningstrike/engine/Engine.java	/^    private static void render() {$/;"	m	class:Engine	file:
+render	src/main/java/lightningstrike/engine/render/DefaultRenderer.java	/^    public static void render() {$/;"	m	class:DefaultRenderer
+renderObject	src/main/java/lightningstrike/engine/render/DefaultRenderer.java	/^    private static void renderObject() {$/;"	m	class:DefaultRenderer	file:
+renderers	src/main/java/lightningstrike/engine/managers/WindowManager.java	/^    private static ArrayList<Function> renderers = new ArrayList<>();$/;"	f	class:WindowManager	file:
+rot	src/main/java/lightningstrike/engine/data/GObject.java	/^    public Vector3f pos, rot, scale;$/;"	f	class:GObject
+run	src/main/java/lightningstrike/engine/data/ReturnFunction.java	/^    R run();$/;"	m	interface:ReturnFunction
+run	src/main/java/lightningstrike/engine/util/Function.java	/^    void run();$/;"	m	interface:Function
+run	src/main/java/lightningstrike/engine/util/FunctionDouble.java	/^    void run(double d);$/;"	m	interface:FunctionDouble
+save	gradlew	/^save () {$/;"	f
+scale	src/main/java/lightningstrike/engine/data/GObject.java	/^    public Vector3f pos, rot, scale;$/;"	f	class:GObject
+selectForRendering	src/main/java/lightningstrike/engine/data/GObject.java	/^    public void selectForRendering(ISelectable<GObject> select) {$/;"	m	class:GObject
+selectForRendering	src/main/java/lightningstrike/engine/util/ObjectsManager.java	/^    public static void selectForRendering(int id, ReturnFunction<ISelectable<GObject>> func) {$/;"	m	class:ObjectsManager
+setSelected	src/main/java/lightningstrike/engine/data/ISelectedRenderer.java	/^    void setSelected(ISelectable<GObject> s);$/;"	m	interface:ISelectedRenderer
+setSelectedObject	src/main/java/lightningstrike/engine/data/ISelectable.java	/^    void setSelectedObject(S obj);$/;"	m	interface:ISelectable
+setUniform	src/main/java/lightningstrike/engine/render/DefaultRenderer.java	/^    private static void setUniform(String name, Matrix4f matrix) {$/;"	m	class:DefaultRenderer	file:
+setUniform	src/main/java/lightningstrike/engine/render/DefaultRenderer.java	/^    private static void setUniform(String name, Vector3f vector) {$/;"	m	class:DefaultRenderer	file:
+shouldClose	src/main/java/lightningstrike/engine/io/Window.java	/^    public boolean shouldClose() {$/;"	m	class:Window
+shouldClose	src/main/java/lightningstrike/engine/managers/WindowManager.java	/^    public static boolean shouldClose() {$/;"	m	class:WindowManager
+start	src/main/java/lightningstrike/engine/Engine.java	/^    public static void start(FunctionDouble deltaF, Function fixedF) {$/;"	m	class:Engine
+startDeltaUpdate	src/main/java/lightningstrike/engine/Engine.java	/^    private static void startDeltaUpdate() {$/;"	m	class:Engine	file:
+startFixedUpdate	src/main/java/lightningstrike/engine/Engine.java	/^    private static void startFixedUpdate() {$/;"	m	class:Engine	file:
+startRenderUpdate	src/main/java/lightningstrike/engine/Engine.java	/^    private static void startRenderUpdate() {$/;"	m	class:Engine	file:
+tbo	src/main/java/lightningstrike/engine/data/GObject.java	/^    public int vao, pbo, ibo, tbo, nbo;$/;"	f	class:GObject
+tex	src/main/java/lightningstrike/engine/render/DefaultRenderer.java	/^    static int tex;$/;"	f	class:DefaultRenderer
+transformationMatrix	src/main/java/lightningstrike/engine/util/MatrixUtils.java	/^    public static Matrix4f transformationMatrix(Vector3f translation, Vector3f rotation, Vector3/;"	m	class:MatrixUtils
+update	src/main/java/lightningstrike/engine/io/Window.java	/^    public Window update(Function draw) {$/;"	m	class:Window
+update	src/main/java/lightningstrike/engine/managers/WindowManager.java	/^    public static void update() {$/;"	m	class:WindowManager
+updateDelta	src/main/java/lightningstrike/engine/Engine.java	/^    private static void updateDelta(double delta) {$/;"	m	class:Engine	file:
+updateFixed	src/main/java/lightningstrike/engine/Engine.java	/^    private static void updateFixed() {$/;"	m	class:Engine	file:
+vao	src/main/java/lightningstrike/engine/data/GObject.java	/^    public int vao, pbo, ibo, tbo, nbo;$/;"	f	class:GObject
+viewMatrix	src/main/java/lightningstrike/engine/util/MatrixUtils.java	/^    public static Matrix4f viewMatrix(Vector3f position, Vector3f rotation) {$/;"	m	class:MatrixUtils
+w	src/main/java/lightningstrike/engine/io/Window.java	/^    public int w, h;$/;"	f	class:Window
+warn	gradlew	/^warn () {$/;"	f
+win9xME_args	gradlew.bat	/^:win9xME_args$/;"	l
+win9xME_args_slurp	gradlew.bat	/^:win9xME_args_slurp$/;"	l
+winID	src/main/java/lightningstrike/engine/io/Window.java	/^    public long winID;$/;"	f	class:Window
+windows	src/main/java/lightningstrike/engine/managers/WindowManager.java	/^    private static ArrayList<Window> windows = new ArrayList<>();$/;"	f	class:WindowManager	file:
+zipStoreBase	gradle/wrapper/gradle-wrapper.properties	/^zipStoreBase=GRADLE_USER_HOME$/;"	k
+zipStorePath	gradle/wrapper/gradle-wrapper.properties	/^zipStorePath=wrapper\/dists$/;"	k
