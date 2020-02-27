@@ -4,6 +4,7 @@ import lightningstike.engine.data.GObject;
 import lightningstike.engine.data.ISelectable;
 import lightningstike.engine.data.ISelectedRenderer;
 import lightningstike.engine.data.ReturnFunction;
+import lightningstike.engine.managers.LightManager;
 import lightningstike.engine.managers.WindowManager;
 import lightningstike.engine.util.MatrixUtils;
 import lightningstike.engine.util.ObjectsManager;
@@ -74,8 +75,7 @@ public class DefaultRenderer {
         setUniform("project", MatrixUtils.projectionMatrix(70, (float) WindowManager.getWindows().get(0).w/(float)WindowManager.getWindows().get(0).h, 0.1f, 100));
         setUniform("view", MatrixUtils.viewMatrix(cam, camRot));
 
-        setUniform("lightPos", new Vector3f(0,0,-3));
-        setUniform("lightColor", new Vector3f(1,1,1));
+        LightManager.loadUniforms(obj.getSelectedObject().mat.PID);
         setUniform("viewPos", cam);
 
         GL11.glDrawElements(GL11.GL_TRIANGLES, obj0.indsCount, GL11.GL_UNSIGNED_INT, 0);

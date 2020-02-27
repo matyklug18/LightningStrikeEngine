@@ -1,5 +1,6 @@
 package lightningstike.engine.data;
 
+import lightningstike.engine.managers.LightManager;
 import lightningstike.engine.util.StringLoader;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
@@ -18,6 +19,11 @@ public class GMaterial {
     private void initShader(Vector4f color) {
         String VF = StringLoader.loadResourceAsString("vert.glsl");
         String FF = StringLoader.loadResourceAsString("frag.glsl");
+
+        FF = FF.replace("%maxpointlights%", Integer.toString(LightManager.MAX_POINT_LIGHTS))
+                .replace("%maxdirlights%", Integer.toString(LightManager.MAX_DIR_LIGHTS))
+                .replace("%maxarealights%", Integer.toString(LightManager.MAX_AREA_LIGHTS))
+                .replace("%maxspotlights%", Integer.toString(LightManager.MAX_SPOT_LIGHTS));
 
         PID = GL20.glCreateProgram();
 

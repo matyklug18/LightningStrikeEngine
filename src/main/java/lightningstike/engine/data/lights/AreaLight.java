@@ -1,4 +1,4 @@
-package lightningstike.engine.data;
+package lightningstike.engine.data.lights;
 
 public class AreaLight implements ILight{
 }
